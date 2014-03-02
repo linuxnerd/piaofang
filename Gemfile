@@ -1,45 +1,64 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.0.1'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#加密
+#gem 'bcrypt-ruby', '3.1.2'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+#分页
+#gem 'will_paginate', '3.0.4'
+#gem 'bootstrap-will_paginate', '0.0.9'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+#form
+#gem 'simple_form' ,'3.0.1'
+#gem 'country_select', '1.3.1'
 
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+#导出xls
+#gem 'spreadsheet', '0.9.7'
+#gem 'ruby-ole', '1.2.11.7'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+#表格
+#gem 'wice_grid', '3.4.0'
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
+#样式
+#gem 'jquery-ui-rails'
+#gem 'jquery-modal-rails'
+#gem 'bootstrap-sass','2.3.2.0'
+#gem 'bootstrap_helper', github: 'sunday35034/bootstrap-helper'
+#gem 'font-awesome-sass'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# 定时任务
+gem 'whenever', '0.9.0', require: false
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# 配置
+gem 'settingslogic', '2.0.9'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+group :development, :test do
+    gem 'sqlite3', '1.3.7'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+group :test do
+    gem 'mysql2', '0.3.15'
+    gem 'selenium-webdriver', '2.0.0'
+    gem 'capybara', '2.1.0'
+    #gem 'factory_girl_rails', '4.2.1'
+    #gem 'cucumber-rails', '1.3.0', :require => false
+    #gem 'database_cleaner', github: 'bmabey/database_cleaner'
+end
+gem 'sass-rails', '4.0.1'
+gem 'uglifier', '2.1.1'
+gem 'coffee-rails', '4.0.0'
+gem 'jquery-rails', '2.2.1'
+gem 'turbolinks', '1.1.1'
+gem 'jbuilder', '1.0.2'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :doc do
+  gem 'sdoc', '0.3.20', require: false
+end
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+group :production do
+    gem 'mysql2', '0.3.15'
+    gem 'rails_12factor', '0.0.2'
+end
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'rubyzip',  "~> 0.9.9"

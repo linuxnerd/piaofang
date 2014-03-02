@@ -1,0 +1,11 @@
+defaults: &defaults
+  movie_api_key: 8b5f6d4adb46123938ebad000ca09300
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

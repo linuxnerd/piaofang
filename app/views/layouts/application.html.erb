@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Piaofang</title>
+  <meta charset="utf-8" />
+  <title>牛牛票房榜</title>
+  <meta name="keywords" content="电影,北美票房榜,香港票房榜,内地票房榜,大陆票房榜,电影推荐,简洁" />
+  <meta name="description" content="以最简洁的界面显示北美、香港、内地票房榜" />
+  <meta name="description" content="" />
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="ui page">
+  <%= render 'layouts/header' %>
+  <%= yield %>
+</div>
 </body>
 </html>
