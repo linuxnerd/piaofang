@@ -1,5 +1,7 @@
 class BoxofficesController < ApplicationController
   def index
-    #@us_boxoffice = Boxoffice.where(area: 'US')
+    @us = Boxoffice.where(area: 'US')
+    @hk = Boxoffice.where(area: 'HK')
+    @cn = Boxoffice.where(area: 'CN')
   end
 end

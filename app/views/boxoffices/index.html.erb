@@ -4,23 +4,36 @@
   <a class="green item" data-tab="CN">内地</a>
 </div>
 <div class="ui active tab segment" data-tab="US">
-  <table class="ui table segment">
-    <thead>
-      <tr>
-        <th>排名</th>
-        <th>影片名称</th>
-        <th>榜单周数</th>
-        <th>周末票房</th>
-        <th>累计票房</th>
-      </tr>
-      <tbody>
-        
-      </tbody>
-    </thead>
-  </table>
+  <%= render_boxoffice_tab(
+          [
+            { :name => 'rid', :display_name => '排名' },
+            { :name => 'name', :display_name => '影片名称' },
+            { :name => 'wk', :display_name => '榜单周数' },
+            { :name => 'wboxoffice', :display_name => '周末票房' },
+            { :name => 'tboxoffice', :display_name => '累计票房'}
+          ], @us) %>
+  
 </div>
-<div class="ui tab segment" data-tab="HK">Second</div>
-<div class="ui tab segment" data-tab="CN">Third</div>
+<div class="ui tab segment" data-tab="HK">
+  <%= render_boxoffice_tab(
+          [
+            { :name => 'rid', :display_name => '排名' },
+            { :name => 'name', :display_name => '影片名称' },
+            { :name => 'wk', :display_name => '榜单周数' },
+            { :name => 'wboxoffice', :display_name => '周末票房' },
+            { :name => 'tboxoffice', :display_name => '累计票房'}
+          ], @hk) %>
+</div>
+<div class="ui tab segment" data-tab="CN">
+  <%= render_boxoffice_tab(
+          [
+            { :name => 'rid', :display_name => '排名' },
+            { :name => 'name', :display_name => '影片名称' },
+            { :name => 'wk', :display_name => '榜单周数' },
+            { :name => 'wboxoffice', :display_name => '周末票房' },
+            { :name => 'tboxoffice', :display_name => '累计票房'}
+          ], @cn) %>
+</div>
 
 <script type="text/javascript">
 $(function (){
