@@ -4,39 +4,33 @@
   <a class="green item" data-tab="CN">内地</a>
 </div>
 <div class="ui active tab " data-tab="US">
-  <%= render_table(
+  <%= render_table(@us,
           [
             { :name => 'rid', :display_name => '排名' },
             { :name => 'name', :display_name => '影片名称' },
             { :name => 'wk', :display_name => '榜单周数' },
             { :name => 'wboxoffice', :display_name => '周末票房' },
             { :name => 'tboxoffice', :display_name => '累计票房'}
-          ], @us) %>
+          ]) %>
   
 </div>
 <div class="ui tab " data-tab="HK">
-  <%= render_table(
+  <%= render_table(@hk,
           [
             { :name => 'rid', :display_name => '排名' },
             { :name => 'name', :display_name => '影片名称' },
             { :name => 'wk', :display_name => '榜单周数' },
             { :name => 'wboxoffice', :display_name => '周末票房' },
             { :name => 'tboxoffice', :display_name => '累计票房'}
-          ], @hk) %>
+          ]) %>
 </div>
 <div class="ui tab " data-tab="CN">
-  <%= render_table(
+  <%= render_table(@cn,
           [
             { :name => 'rid', :display_name => '排名' },
             { :name => 'name', :display_name => '影片名称' },
             { :name => 'wk', :display_name => '榜单周数' },
             { :name => 'wboxoffice', :display_name => '周末票房' },
             { :name => 'tboxoffice', :display_name => '累计票房'}
-          ], @cn) %>
+          ]) %>
 </div>
-
-<script type="text/javascript">
-$(function (){
-  $('.boxoffice.menu .item').tab();
-})
-</script>

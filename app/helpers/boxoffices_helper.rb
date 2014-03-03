@@ -1,6 +1,6 @@
 module BoxofficesHelper
 
-  def render_table(columns, collection = {})
+  def render_table(collection = {}, columns)
     thead = content_tag :thead do
      content_tag :tr do
       columns.collect {|column| concat content_tag(:th,column[:display_name])}.join().html_safe
@@ -14,7 +14,6 @@ module BoxofficesHelper
             concat content_tag(:td, elem.attributes[column[:name]])
         }.to_s.html_safe
       end
-
     }.join().html_safe
    end
 
