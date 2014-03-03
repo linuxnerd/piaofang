@@ -3,8 +3,8 @@
   <a class="blue item" data-tab="HK">香港</a>
   <a class="green item" data-tab="CN">内地</a>
 </div>
-<div class="ui active tab segment" data-tab="US">
-  <%= render_boxoffice_tab(
+<div class="ui active tab " data-tab="US">
+  <%= render_table(
           [
             { :name => 'rid', :display_name => '排名' },
             { :name => 'name', :display_name => '影片名称' },
@@ -14,8 +14,8 @@
           ], @us) %>
   
 </div>
-<div class="ui tab segment" data-tab="HK">
-  <%= render_boxoffice_tab(
+<div class="ui tab " data-tab="HK">
+  <%= render_table(
           [
             { :name => 'rid', :display_name => '排名' },
             { :name => 'name', :display_name => '影片名称' },
@@ -24,8 +24,8 @@
             { :name => 'tboxoffice', :display_name => '累计票房'}
           ], @hk) %>
 </div>
-<div class="ui tab segment" data-tab="CN">
-  <%= render_boxoffice_tab(
+<div class="ui tab " data-tab="CN">
+  <%= render_table(
           [
             { :name => 'rid', :display_name => '排名' },
             { :name => 'name', :display_name => '影片名称' },
