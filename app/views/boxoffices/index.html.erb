@@ -1,11 +1,29 @@
-<div class="ui tabular menu">
-  <a class="active item">
-    北美
-  </a>
-  <a class="item">
-    香港
-  </a>
-  <a class="item">
-    内地
-  </a>
+<div class="ui pointing secondary boxoffice menu">
+  <a class="red active item" data-tab="US">北美</a>
+  <a class="blue item" data-tab="HK">香港</a>
+  <a class="green item" data-tab="CN">内地</a>
 </div>
+<div class="ui active tab segment" data-tab="US">
+  <table class="ui table segment">
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>影片名称</th>
+        <th>榜单周数</th>
+        <th>周末票房</th>
+        <th>累计票房</th>
+      </tr>
+      <tbody>
+        
+      </tbody>
+    </thead>
+  </table>
+</div>
+<div class="ui tab segment" data-tab="HK">Second</div>
+<div class="ui tab segment" data-tab="CN">Third</div>
+
+<script type="text/javascript">
+$(function (){
+  $('.boxoffice.menu .item').tab();
+})
+</script>

@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require semantic.js
+//= require jquery.address.js
 //= require_tree .
