@@ -8,6 +8,8 @@ BASE_URL = "http://movie.mtime.com/boxoffice"
 html_stream = open(BASE_URL)
 page = Nokogiri::HTML(html_stream)
 
+Boxoffice.delete_all
+
 page.css('div.ticket_list').collect do |area_item|
 
   area_item.css('ul.content li').collect do |row|
@@ -45,8 +47,24 @@ page.css('div.ticket_list').collect do |area_item|
     end.join('/')
 
     # release date
-    release_date = detail_page.css("li span[property='v:initialReleaseDate']").attr('content').text
-    p release_date
+    release_date = detail_page.css("li span[property='v:initialReleaseDate']").text.strip
+
+
+    # import into database
+    Boxoffice.create!(rid: rid,
+                      name: name,
+                      year: year,
+                      area: area,
+                      wk: wk,
+                      wboxoffice: wboxoffice,
+                      tboxoffice: tboxoffice,
+                      image_url: image_url,
+                      rating: rating,
+                      director: director,
+                      actors: actors,
+                      types: types,
+                      release_date: release_date)
+
   end
 
 end

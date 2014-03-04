@@ -22,5 +22,5 @@
 set :output, "log/cron.log"
 
 every :monday, :at => '10am' do
-  runner "scripts/import_boxoffices.rb"
+  runner "scripts/grab_boxoffice_from_mtime.rb"
 end
