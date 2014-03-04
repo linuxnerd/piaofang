@@ -33,12 +33,9 @@ gem 'whenever', '0.9.0', require: false
 # 配置
 gem 'settingslogic', '2.0.9'
 
-group :development, :test do
-    gem 'sqlite3', '1.3.7'
-end
+gem 'sqlite3', '1.3.7'
 
 group :test do
-    gem 'mysql2', '0.3.15'
     gem 'selenium-webdriver', '2.0.0'
     gem 'capybara', '2.1.0'
     #gem 'factory_girl_rails', '4.2.1'
