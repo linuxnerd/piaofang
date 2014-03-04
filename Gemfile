@@ -30,6 +30,9 @@ gem 'rails', '~> 4.0.1'
 # 定时任务
 gem 'whenever', '0.9.0', require: false
 
+# 抓取数据
+gem 'nokogiri', '1.6.1'
+
 # 配置
 gem 'settingslogic', '2.0.9'
 
