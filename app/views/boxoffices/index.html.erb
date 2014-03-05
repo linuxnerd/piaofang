@@ -12,7 +12,7 @@
   <div class="ui animated list">
     <% @us.each do |us_item| %>
       <div class="item">
-        <img alt='<%= us_item.name %>' url='<%= us_item.image_url %>', class = 'ui avatar image' />
+        <img alt="<%= us_item.name %>" src="<%= us_item.image_url %>", class = 'ui avatar image' />
       </div>
     <% end %>
   </div>
