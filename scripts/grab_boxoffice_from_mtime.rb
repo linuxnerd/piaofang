@@ -27,9 +27,6 @@ page.css('div.ticket_list').collect do |area_item|
     detail_stream = open(detail_url)
     detail_page = Nokogiri::HTML(detail_stream)
 
-    # 海报缩略图链接
-    image_url = detail_page.css('img.movie_film_img').attr('src').text 
-
     # movie rating
     rating = detail_page.css("span[property='v:average']").text
 
@@ -49,6 +46,16 @@ page.css('div.ticket_list').collect do |area_item|
     # release date
     release_date = detail_page.css("li span[property='v:initialReleaseDate']").text.strip
 
+    # 海报缩略图链接
+    image_url = detail_page.css('img.movie_film_img').attr('src').text 
+    filename = image_url.split('/').last
+    data = open(image_url) { |f| f.read }
+    file_path = "public/uploads/poster/#{name}/#{filename}"
+    url_path = "/uploads/poster/#{name}/#{filename}"
+
+    #if folder not exist,then creat it.
+    Dir.mkdir("public/uploads/poster/#{name}") unless File.exist?("public/uploads/poster/#{name}")
+    open(file_path,"wb") { |f| f.write(data) } unless File.exist?(file_path)
 
     # import into database
     Boxoffice.create!(rid: rid,
@@ -58,7 +65,7 @@ page.css('div.ticket_list').collect do |area_item|
                       wk: wk,
                       wboxoffice: wboxoffice,
                       tboxoffice: tboxoffice,
-                      image_url: image_url,
+                      image_url: url_path,
                       rating: rating,
                       director: director,
                       actors: actors,
