@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304152200) do
+ActiveRecord::Schema.define(version: 20140305113102) do
 
   create_table "boxoffices", force: true do |t|
     t.integer  "rid"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140304152200) do
     t.datetime "updated_at"
     t.string   "area"
     t.string   "image_url"
-    t.integer  "rating",       limit: 1
+    t.string   "rating",       limit: 1
     t.string   "director"
     t.string   "actors"
     t.string   "types"

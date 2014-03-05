@@ -18,7 +18,18 @@ module BoxofficesHelper
    end
 
    content_tag :table, thead.concat(tbody), class: 'ui table segment'
+  end
 
+  def render_rating(rating)
+    content_tag :div, class: 'ui heart rating', :'data-rating' => rating.split('.').first.to_i/2 do 
+      active_heart = (rating.split('.').first.to_i/2).times do
+        concat content_tag(:i, '', class: 'icon active')
+      end.to_s.html_safe
+
+      empty_heart = (5-rating.split('.').first.to_i/2).times do
+        concat content_tag(:i, '', class: 'icon')
+      end.to_s.html_safe
+    end
   end
 
 end

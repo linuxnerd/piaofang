@@ -71,7 +71,6 @@ page.css('div.ticket_list').collect do |area_item|
                       actors: actors,
                       types: types,
                       release_date: release_date)
-
   end
 
 end
