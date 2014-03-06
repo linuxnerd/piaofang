@@ -16,7 +16,7 @@ page.css('div.ticket_list').collect do |area_item|
     # prepare row data
     rid = row.css('em.c_green').text # 排名
     name = row.css('a').text.strip # 名称
-    year = row.css('em.c_666').text # 年份
+    #year = row.css('em.c_666').text # 年份
     area = area_item['name'] # 区域
     wk = area_item['date'] # 周数
     wboxoffice = row.css('span.weekly').text # 周票房
@@ -63,7 +63,6 @@ page.css('div.ticket_list').collect do |area_item|
     # import into database
     Boxoffice.create!(rid: rid,
                       name: name,
-                      year: year,
                       area: area,
                       wk: wk,
                       wboxoffice: wboxoffice,

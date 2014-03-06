@@ -1,623 +1,620 @@
 <div class='ui grid'>
-<div class='ui two wide column'></div>
-<div class='ui twelve wide column'>
+  <div class='ui two wide column'></div>
+  <div class='ui twelve wide column'>
 
-<div class="ui pointing secondary boxoffice menu">
-  <a class="red active item" data-tab="US">北美</a>
-  <a class="orange item" data-tab="CN">内地</a>
-  <a class="green item" data-tab="HK">香港</a>
-  <a class="blue item" data-tab="TW">台湾</a>
-  <a class="teal item" data-tab="JP">日本</a>
-  <a class="purple item" data-tab="KR">韩国</a>
-  <a class="red item" data-tab="FR">法国</a>
-  
-</div>
+    <div class="ui pointing secondary boxoffice menu">
+      <a class="red active item" data-tab="US">北美</a>
+      <a class="orange item" data-tab="CN">内地</a>
+      <a class="green item" data-tab="HK">香港</a>
+      <a class="blue item" data-tab="TW">台湾</a>
+      <a class="teal item" data-tab="JP">日本</a>
+      <a class="purple item" data-tab="KR">韩国</a>
+      <a class="red item" data-tab="FR">法国</a>
+      
+    </div>
 
-<div class="ui active tab " data-tab="US">
-  <div class="ui label">榜单周 <%= @us.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @us.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
+    <div class="ui active tab " data-tab="US">
+      <div class="ui label">榜单周 <%= @us.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @us.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
             </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<div class="ui tab " data-tab="CN">
-  <div class="ui label">榜单周 <%= @cn.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @cn.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
-            </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="ui tab " data-tab="HK">
-  <div class="ui label">榜单周 <%= @hk.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @hk.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
+
+    <div class="ui tab " data-tab="CN">
+      <div class="ui label">榜单周 <%= @cn.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @cn.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
             </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="ui tab " data-tab="TW">
-  <div class="ui label">榜单周 <%= @tw.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @tw.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
-            </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="ui tab " data-tab="JP">
-  <div class="ui label">榜单周 <%= @jp.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @jp.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
+    <div class="ui tab " data-tab="HK">
+      <div class="ui label">榜单周 <%= @hk.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @hk.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
             </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="ui tab " data-tab="KR">
-  <div class="ui label">榜单周 <%= @kr.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @kr.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
-            </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="ui tab " data-tab="FR">
-  <div class="ui label">榜单周 <%= @fr.first.wk %></div>
-  <div class='ui segment'>
-    <div class="ui selection list ">
-      <% @fr.each do |item| %>
-        <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
-          第<%= item.rid %>名
-        </div>
-        <div id='<%= item.area %><%=item.rid %>' class="item" >
-          <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
-          <div class='ui grid'>
-            <div class='ui six wide column'>
-              <h3 class="ui header">
-                <%= item.name %>
-                <%= render_rating(item.rating) %>
-              </h3>
-              <%= item.types %>
+    <div class="ui tab " data-tab="TW">
+      <div class="ui label">榜单周 <%= @tw.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @tw.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
             </div>
-            <div class='ui six wide column'>
-              <table class='ui table segment'>
-                <thead>
-                  <tr>
-                    <th>周票房</th>
-                    <th>总票房</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><%= item.wboxoffice %></td>
-                    <td><%= item.tboxoffice %></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="ui divider"></div>
-        
-        <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
-          <i class="close icon"></i>
-          <div class="header">
-              <%= item.name %>
-          </div>
-          <div class="content">
-            <div class="left">
-              <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
-            </div>
-            <div class='right'>
-              <div class="ui divided selection list">
-                <a class="item">
-                    <div class="ui teal horizontal label">上映日期</div>
-                    <%= item.release_date %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">导演</div>
-                    <%= item.director %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">主演</div>
-                    <%= item.actors %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">类型</div>
-                    <%= item.types %>
-                </a>
-                <a class="item">
-                    <div class="ui teal horizontal label">简介</div>
-                    <p><%= item.summary %><p>
-                </a>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <script type="text/javascript">
-          $('#<%= item.area %><%=item.rid %>').popup({
-            position : 'left center',
-            title    : '<%= item.release_date %>上映',
-            content  : '主演：<%= item.actors %>'
-          });
-          $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
-        </script>
-      <% end %>
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="ui tab " data-tab="JP">
+      <div class="ui label">榜单周 <%= @jp.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @jp.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
+            </div>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="ui tab " data-tab="KR">
+      <div class="ui label">榜单周 <%= @kr.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @kr.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
+            </div>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="ui tab " data-tab="FR">
+      <div class="ui label">榜单周 <%= @fr.first.wk %></div>
+      <div class='ui segment'>
+        <div class="ui selection list ">
+          <% @fr.each do |item| %>
+            <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+              第<%= item.rid %>名
+            </div>
+            <div id='<%= item.area %><%=item.rid %>' class="item" >
+              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <div class='ui grid'>
+                <div class='ui six wide column'>
+                  <h3 class="ui header">
+                    <%= item.name %>
+                    <%= render_rating(item.rating) %>
+                  </h3>
+                  <%= item.types %>
+                </div>
+                <div class='ui six wide column'>
+                  <table class='ui table segment'>
+                    <thead>
+                      <tr>
+                        <th>周票房</th>
+                        <th>总票房</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= item.wboxoffice %></td>
+                        <td><%= item.tboxoffice %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="ui divider"></div>
+            
+            <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+              <i class="close icon"></i>
+              <div class="header">
+                  <%= item.name %>
+              </div>
+              <div class="content">
+                <div class="left">
+                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                </div>
+                <div class='right'>
+                  <div class="ui divided selection list">
+                    <a class="item">
+                        <div class="ui teal horizontal label">上映日期</div>
+                        <%= item.release_date %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">导演</div>
+                        <%= item.director %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">主演</div>
+                        <%= item.actors %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">类型</div>
+                        <%= item.types %>
+                    </a>
+                    <a class="item">
+                        <div class="ui teal horizontal label">简介</div>
+                        <p><%= item.summary %><p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+              $('#<%= item.area %><%=item.rid %>').popup({
+                position : 'left center',
+                title    : '<%= item.release_date %>上映',
+                content  : '主演：<%= item.actors %>'
+              });
+              $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+            </script>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-</div>
-
-
 </div>
