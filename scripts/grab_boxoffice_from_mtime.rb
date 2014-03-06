@@ -46,6 +46,9 @@ page.css('div.ticket_list').collect do |area_item|
     # release date
     release_date = detail_page.css("li span[property='v:initialReleaseDate']").text.strip
 
+    # summary
+    summary = detail_page.css("span[property='v:summary']").text.strip
+
     # 海报缩略图链接
     image_url = detail_page.css('img.movie_film_img').attr('src').text 
     filename = image_url.split('/').last
@@ -70,7 +73,8 @@ page.css('div.ticket_list').collect do |area_item|
                       director: director,
                       actors: actors,
                       types: types,
-                      release_date: release_date)
+                      release_date: release_date,
+                      summary: summary)
   end
 
 end
