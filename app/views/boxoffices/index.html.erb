@@ -22,14 +22,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -54,33 +54,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -90,8 +90,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>
@@ -109,14 +109,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -141,33 +141,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -177,8 +177,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>
@@ -195,14 +195,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -227,33 +227,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -263,8 +263,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>
@@ -281,14 +281,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -313,33 +313,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -349,8 +349,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>
@@ -367,14 +367,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -399,33 +399,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -435,8 +435,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>
@@ -453,14 +453,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -485,33 +485,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -521,8 +521,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>
@@ -539,14 +539,14 @@
               第<%= item.rid %>名
             </div>
             <div id='<%= item.area %><%=item.rid %>' class="item" >
-              <img alt="<%= item.name %>" src="<%= item.image_url %>", class = 'ui circular small image' />
+              <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
               <div class='ui grid'>
                 <div class='ui six wide column'>
                   <h3 class="ui header">
-                    <%= item.name %>
-                    <%= render_rating(item.rating) %>
+                    <%= item.movie.name %>
+                    <%= render_rating(item.movie.rating) %>
                   </h3>
-                  <%= item.types %>
+                  <%= item.movie.types %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -571,33 +571,33 @@
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.name %>
+                  <%= item.movie.name %>
               </div>
               <div class="content">
                 <div class="left">
-                  <img alt="<%= item.name %>" src="<%= item.image_url %>" class = 'ui image' />
+                  <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>" class = 'ui image' />
                 </div>
                 <div class='right'>
                   <div class="ui divided selection list">
                     <a class="item">
                         <div class="ui teal horizontal label">上映日期</div>
-                        <%= item.release_date %>
+                        <%= item.movie.release_date %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">导演</div>
-                        <%= item.director %>
+                        <%= item.movie.director %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">主演</div>
-                        <%= item.actors %>
+                        <%= item.movie.actors %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">类型</div>
-                        <%= item.types %>
+                        <%= item.movie.types %>
                     </a>
                     <a class="item">
                         <div class="ui teal horizontal label">简介</div>
-                        <p><%= item.summary %><p>
+                        <p><%= item.movie.summary %><p>
                     </a>
                   </div>
                 </div>
@@ -607,8 +607,8 @@
             <script type="text/javascript">
               $('#<%= item.area %><%=item.rid %>').popup({
                 position : 'left center',
-                title    : '<%= item.release_date %>上映',
-                content  : '主演：<%= item.actors %>'
+                title    : '<%= item.movie.release_date %>上映',
+                content  : '主演：<%= item.movie.actors %>'
               });
               $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
             </script>

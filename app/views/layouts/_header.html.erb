@@ -1,6 +1,12 @@
-<div class="inverted teal ui menu">
-  <div class="header item">
+<nav class="ui teal pointing menu">
+  <%= link_to root_path, class:'header item' do %>
     <%= image_tag 'logo.gif', class: 'ui tiny floated image' %>
     &nbsp;牛牛票房榜
-  </div>
-</div>
+  <% end %>
+  <a href='/' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'index' %>">
+    <i class='sort attributes descending icon'></i>票房榜
+  </a>
+  <a href='#' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'other' %>">
+    <i class='trophy icon'></i>功勋榜
+  </a>
+</nav>
