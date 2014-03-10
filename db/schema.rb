@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309114421) do
+ActiveRecord::Schema.define(version: 20140310030541) do
 
   create_table "boxoffices", force: true do |t|
     t.integer  "rid"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140309114421) do
     t.text     "summary"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "en_name"
   end
 
   add_index "movies", ["name"], name: "index_movies_on_name", unique: true

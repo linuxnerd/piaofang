@@ -1,9 +1,7 @@
 require "open-uri"
-require "json"
 require "nokogiri"
 
 BASE_URL = "http://movie.mtime.com/boxoffice"
-
 
 html_stream = open(BASE_URL)
 page = Nokogiri::HTML(html_stream)
@@ -49,6 +47,7 @@ page.css('div.ticket_list').collect do |area_item|
 
       # movie_name
       name = detail_page.css("span[property='v:itemreviewed']").text.strip
+      en_name = detail_page.css("h1.movie_film_nav span.ml9").text.strip
 
       # 海报缩略图链接
       poster_url = detail_page.css('img.movie_film_img').attr('src').text 
@@ -65,6 +64,7 @@ page.css('div.ticket_list').collect do |area_item|
       movie = Movie.where(name: name).first
       if movie.nil?
         movie = Movie.create!(name: name,
+                        en_name: en_name,
                         poster_url: url_path,
                         rating: rating,
                         director: director,
@@ -83,6 +83,8 @@ page.css('div.ticket_list').collect do |area_item|
                           wboxoffice: wboxoffice,
                           tboxoffice: tboxoffice)
       end
+
+      p area+'_'+name+' ok'
 
     rescue Exception
       p area+'_'+name+'('+detail_url+')打开失败'
