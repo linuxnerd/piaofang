@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310030541) do
+ActiveRecord::Schema.define(version: 20140310124905) do
 
   create_table "boxoffices", force: true do |t|
     t.integer  "rid"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20140310030541) do
   end
 
   add_index "boxoffices", ["movie_id"], name: "index_boxoffices_on_movie_id"
+
+  create_table "honors", force: true do |t|
+    t.string   "session"
+    t.string   "year"
+    t.string   "award_name"
+    t.string   "award_type"
+    t.string   "name"
+    t.string   "festival"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", force: true do |t|
     t.string   "name"

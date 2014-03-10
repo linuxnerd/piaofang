@@ -21,6 +21,6 @@
 
 set :output, "log/cron.log"
 
-every :monday, :at => '10am' do
+every 1.day, :at => '23pm' do
   runner "scripts/grab_boxoffice_from_mtime.rb"
 end

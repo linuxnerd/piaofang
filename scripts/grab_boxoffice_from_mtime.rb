@@ -49,16 +49,18 @@ page.css('div.ticket_list').collect do |area_item|
       name = detail_page.css("span[property='v:itemreviewed']").text.strip
       en_name = detail_page.css("h1.movie_film_nav span.ml9").text.strip
 
-      # 海报缩略图链接
-      poster_url = detail_page.css('img.movie_film_img').attr('src').text 
-      filename = poster_url.split('/').last
-      data = open(poster_url) { |f| f.read }
-      file_path = "public/uploads/poster/#{name}/#{filename}"
-      url_path = "/uploads/poster/#{name}/#{filename}"
+      # 海报缩略图链接（海报可能没有）
+      unless detail_page.css('img.movie_film_img').blank?
+        poster_url = detail_page.css('img.movie_film_img').attr('src').text 
+        filename = poster_url.split('/').last
+        data = open(poster_url) { |f| f.read }
+        file_path = "public/uploads/poster/#{name}/#{filename}"
+        url_path = "/uploads/poster/#{name}/#{filename}"
 
-      #if folder not exist,then creat it.
-      Dir.mkdir("public/uploads/poster/#{name}") unless File.exist?("public/uploads/poster/#{name}")
-      open(file_path,"wb") { |f| f.write(data) } unless File.exist?(file_path)
+        #if folder not exist,then creat it.
+        Dir.mkdir("public/uploads/poster/#{name}") unless File.exist?("public/uploads/poster/#{name}")
+        open(file_path,"wb") { |f| f.write(data) } unless File.exist?(file_path)
+      end
 
       # import into database
       movie = Movie.where(name: name).first
@@ -73,7 +75,6 @@ page.css('div.ticket_list').collect do |area_item|
                         release_date: release_date,
                         summary: summary)
       end
-
 
       if Boxoffice.where(wk: wk, area: area, movie_id: movie.id).first.nil?
         movie.boxoffices.create!(rid: rid,
