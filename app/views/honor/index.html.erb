@@ -1,8 +1,8 @@
 <div class='stripe'>
   <form class='ui form'>
     <div class='inline field'>
-      <input name="movie_name" type="text" size='50%' placeholder="搜索...">
-      <button class="ui teal animated fade button">
+      <input name="movie_name" type="text" size='50%' placeholder="搜索..." value='<%=params[:movie_name]%>'>
+      <button class="ui teal vertical animated button">
         <div class="hidden content">搜索</div>
         <div class="visible content">
           <i class=" search icon"></i>
@@ -14,14 +14,39 @@
 <div class='stripe'>
   <div class='ui two column grid'>
     <div class='column'>
-      <div class='ui teal segment'>
-        halou1
-      </div>
+      <% if @honor_movies_list.blank? %>
+        <div class='ui teal segment'>
+          <%= image_tag "cry#{rand(5)}.jpeg", class: 'ui floated image' %>
+          下次一定会得奥斯卡的
+        </div>
+      <% else %>
+        <% @honor_movies_list.collect do |oscar| %>
+          
+        <% end %>
+      <% end %>
     </div>
     <div class='column'>
-      <div class='ui red segment'>
-        halou1
-      </div>
+      <% if @boxoffice_movies_list.blank? %>
+        <div class='ui blue segment'>
+          <%= image_tag "helpless#{rand(3)}.jpeg", class: 'ui floated image' %>
+          很遗憾，还没能进入过票房榜榜单
+        </div>
+      <% else %>
+        <% @boxoffice_movies_list.collect do |movie| %>
+          <div class='ui blue segment'>
+            <h3 class='ui block header'><%= movie.name %></h3>
+            <div class="ui divided list">
+              <% movie.boxoffices.order(:rid).collect do |b| %>
+                <div class='item'>
+                  <div class='content'>
+                    <%= b.area+b.wk %><a class="ui <%= b.rid<=3 ? 'red' : 'blue' %> label">第<%= b.rid %>名</a>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %> <!--if-->
     </div>
   </div>
 </div>
