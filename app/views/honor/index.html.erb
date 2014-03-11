@@ -1,0 +1,39 @@
+<div class='stripe'>
+  <form class='ui form'>
+    <div class='inline field'>
+      <input name="movie_name" type="text" size='50%' placeholder="搜索...">
+      <button class="ui teal animated fade button">
+        <div class="hidden content">搜索</div>
+        <div class="visible content">
+          <i class=" search icon"></i>
+        </div>
+      </button>
+    </div>
+  </form><!--form-->
+</div>
+<div class='stripe'>
+  <div class='ui two column grid'>
+    <div class='column'>
+      <div class='ui teal segment'>
+        halou1
+      </div>
+    </div>
+    <div class='column'>
+      <div class='ui red segment'>
+        halou1
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.ui.form').form({
+    movie_name: {
+      identifier  : 'movie_name',
+      rules: [{
+        type   : 'empty',
+        prompt : '敢不敢填个电影名称再试试？'
+      }]
+    }
+  });
+</script>

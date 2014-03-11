@@ -1,0 +1,36 @@
+<div class="ui grid">
+  <div class="center aligned column">
+    <h2 class="ui icon header">
+      <i class="teal circular emphasized trophy icon"></i>
+      <div class="content">功勋榜
+        <div class="sub header">
+          <p>虽然北美票房榜直接体现影片质量，但北美与国内上映时间脱节太久忘记了怎么办？</p>
+          <p>是否获得过国际大奖？能否直接告诉我影片是否值得观赏？</p>
+        </div>
+
+      </div>
+    </h2>
+    <form class='ui form'>
+      <div class='inline field'>
+        <input name="movie_name" type="text" size='30%' placeholder="搜索...">
+        <button class="ui teal animated fade button">
+          <div class="hidden content">搜索</div>
+          <div class="visible content">
+            <i class=" search icon"></i>
+          </div>
+        </button>
+      </div>
+    </form><!--form-->
+  </div>
+</div>
+<script type="text/javascript">
+  $('.ui.form').form({
+    movie_name: {
+      identifier  : 'movie_name',
+      rules: [{
+        type   : 'empty',
+        prompt : '敢不敢填个电影名称再试试？'
+      }]
+    }
+  });
+</script>

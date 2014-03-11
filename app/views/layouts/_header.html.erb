@@ -1,12 +1,12 @@
-<nav class="ui teal pointing menu">
+<nav class="ui teal menu">
   <%= link_to root_path, class:'header item' do %>
     <%= image_tag 'logo.gif', class: 'ui tiny floated image' %>
     &nbsp;牛牛票房榜
   <% end %>
-  <a href='/' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'index' %>">
+  <a data-method='get' href='/' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'index' %>">
     <i class='sort attributes descending icon'></i>票房榜
   </a>
-  <a href='#' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'other' %>">
-    <i class='trophy icon'></i>殊荣榜
+  <a data-method='get' href='<%= search_honor_index_path %>' class="item <%= 'active' if params[:controller] == 'honor' && params[:action] == 'search' %>">
+    <i class='trophy icon'></i>功勋榜
   </a>
 </nav>

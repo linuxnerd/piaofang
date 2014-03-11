@@ -9,10 +9,15 @@ def oscar_list
 
   list = []
   page.css('.event_yearlist a').collect do |year|
+    next if year.text <= '1971' # 1971年之前的页面问题较多，由于时间久远暂时忽略
     list << year['href']
   end
   list
 end
+
+
+
+Honor.delete_all
 
 oscar_list.collect do |url|
   begin
@@ -22,8 +27,6 @@ oscar_list.collect do |url|
     session = oscar_page_of_year.css('.img_box_gray').first['alt'] # 第几届
 
     year = oscar_page_of_year.css('title').text.split.last # 年份
-
-    next if year <= '1971' # 1971年之前的页面问题较多，由于时间久远暂时忽略
 
     i = 0
     # 以下奖项为影片奖项（非人物获得）
@@ -52,7 +55,7 @@ oscar_list.collect do |url|
                       award_type: '获奖',
                       name: winner,
                       festival: 'oscar')
-        p year+award_name+'获奖'+winner+' ok'
+        p year+award_name+'获奖'+winner+' [ok]'
 
         # 提名影片
         oscar_page_of_year.css('div.bluebox div.review_list')[i].css('strong a').collect do |nominate_item|
@@ -62,7 +65,7 @@ oscar_list.collect do |url|
                       award_type: '获奖',
                       name: winner,
                       festival: 'oscar')
-          p year+award_name+'提名'+nominate_item.text+' ok'
+          p year+award_name+'提名'+nominate_item.text+' [ok]'
         end
       end
 

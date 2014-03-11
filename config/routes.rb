@@ -1,4 +1,9 @@
 Piaofang::Application.routes.draw do
+  resources :honor do
+    collection do
+      get 'search'
+    end
+  end
   root to: 'boxoffices#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

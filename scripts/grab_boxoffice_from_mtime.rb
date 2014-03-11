@@ -85,7 +85,7 @@ page.css('div.ticket_list').collect do |area_item|
                           tboxoffice: tboxoffice)
       end
 
-      p area+'_'+name+' ok'
+      p area+'_'+name+' [ok]'
 
     rescue Exception
       p area+'_'+name+'('+detail_url+')打开失败'

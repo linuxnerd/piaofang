@@ -17,6 +17,3 @@
 //= require jquery.address.js
 //= require_tree .
 
-$(function (){
-  $('.boxoffice.menu .item').tab();
-})
