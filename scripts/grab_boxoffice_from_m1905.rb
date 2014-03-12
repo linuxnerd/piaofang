@@ -69,11 +69,53 @@ def main
     html_stream = open(boxoffice_item[:url])
     page = Nokogiri::HTML(html_stream)
 
-    page.css('tr.tableCONT td').collect do |row|
-      p row
-    end
+    page.css('tr.tableCONT').collect do |row|
+      rid = row.css('td.blueQsCD').text # 名词
+      area = boxoffice_item[:area] # 地区
+      year = boxoffice_item[:year] # 年份
+      week = boxoffice_item[:week] # 周数
+      
+      begin
+        detail_url = row.css('span.pl08 a')[0]['href'] # 明细页面链接
+        detail_page = Nokogiri::HTML(open(detail_url))
 
+        next if detail_page.css('div.laMovName h1 a').text.blank? # 无影片详细页面
+
+        name = detail_page.css('div.laMovName h1 a').text # 影片中文名
+        en_name = detail_page.css('div.laMovName div.fl a')[0].text.strip # 影片英文名
+        director = detail_page.css('ol.movStaff li')[0].css('a').text # 导演
+        rating = detail_page.css('.rating-dt span.score').text # 评分
+
+        # 演员表
+        actors = detail_page.css('ol.movStaff li')[1].css('a.laBlueS_f').collect do |actor|
+          actor.text.strip
+        end.join(', ')
+        
+        # 影片类型
+        types = detail_page.css('ol.movStaff li')[2].css('a').collect do |type|
+          type.text.strip
+        end.join('/')
+
+        # 上映日期
+        if detail_page.css('ol.movStaff li')[4]
+          r_year = detail_page.css('ol.movStaff li')[4].css('a')[0].text
+          r_date = detail_page.css('ol.movStaff li')[4].css('a')[1].text.strip
+          release_date = r_year + '年' + r_date
+        end
+
+        # 剧情页面获取全部剧情
+        scenario_page = Nokogiri::HTML(open(detail_url+'scenario/'))
+        summary = scenario_page.css('.line_Slx').text.gsub(%r{\r\n}, "")
+        p summary
+        p area+year+week+name
+
+      rescue Exception
+        p detail_url+'打开失败'
+      end
+
+    end
   end
+
 end
 
 main
