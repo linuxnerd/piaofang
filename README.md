@@ -10,6 +10,7 @@ System initialization
 bundle install
 rake db:scheme:load
 rails runner scripts/grab_boxoffice_from_mtime.rb
+rails runner scripts/grab_oscar_from_mtime.rb
 ```
 then run your server
 ```
