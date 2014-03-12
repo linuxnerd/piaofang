@@ -62,8 +62,8 @@ oscar_list.collect do |url|
           Honor.create!(session: session,
                       year: year,
                       award_name: award_name,
-                      award_type: '获奖',
-                      name: winner,
+                      award_type: '提名',
+                      name: nominate_item.text,
                       festival: 'oscar')
           p year+award_name+'提名'+nominate_item.text+' [ok]'
         end

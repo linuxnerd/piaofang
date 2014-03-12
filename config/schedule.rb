@@ -24,3 +24,7 @@ set :output, "log/cron.log"
 every 1.day, :at => '1am' do
   runner "scripts/grab_boxoffice_from_mtime.rb"
 end
+
+every 1.day, :at => '3am' do
+  runner "scripts/grab_oscar_from_mtime.rb"
+end
