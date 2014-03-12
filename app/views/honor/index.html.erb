@@ -51,7 +51,7 @@
       <% else %>
         <% @boxoffice_movies_list.collect do |movie| %>
           <div class='ui blue segment'>
-            <h4 class='ui block header'><%= movie.name+' '+movie.en_name></h4>
+            <h4 class='ui block header'><%= movie.name+' '+movie.en_name %></h4>
             <div class="ui divided list">
               <% movie.boxoffices.order(:rid).collect do |b| %>
                 <div class='item'>
