@@ -21,10 +21,11 @@
 
 set :output, "log/cron.log"
 
-every 1.day, :at => '1am' do
+every 2.day, :at => '1am' do
+  runner "scripts/grab_boxoffice_from_m1905.rb"
   runner "scripts/grab_boxoffice_from_mtime.rb"
 end
 
-every 1.day, :at => '3am' do
-  runner "scripts/grab_oscar_from_mtime.rb"
+every 3.day, :at => '6am' do
+  runner "scripts/grab_oscar_from_m1905.rb"
 end
