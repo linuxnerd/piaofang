@@ -21,7 +21,7 @@
 
 set :output, "log/cron.log"
 
-every 2.day, :at => '1am' do
+every 2.day, :at => '11pm' do
   runner "scripts/grab_boxoffice_from_m1905.rb"
   runner "scripts/grab_boxoffice_from_mtime.rb"
 end
