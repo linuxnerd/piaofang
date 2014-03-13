@@ -13,7 +13,8 @@ rails runner scripts/grab_boxoffice_from_m1905.rb
 rails runner scripts/grab_boxoffice_from_mtime.rb
 rails runner scripts/grab_oscar_from_m1905.rb
 ```
-wait for data import is complete, then run your server
+This will take a while. Be patient, pls.
+Wait for data import is complete, then run your server.
 ```
 rails s
 ```
