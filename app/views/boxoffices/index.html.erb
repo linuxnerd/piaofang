@@ -12,7 +12,7 @@
     </div>
 
     <div class="ui active tab " data-tab="US">
-      <div class="ui label">榜单周 <%= @us.first.wk %></div>
+      <div class="ui label">榜单周 <%= @us.first.year + @us.first.wk %></div>
       <div class='ui segment'>
         <div class="ui selection list ">
           <% @us.each do |item| %>
@@ -99,7 +99,7 @@
     </div>
 
     <div class="ui tab " data-tab="CN">
-      <div class="ui label">榜单周 <%= @cn.first.wk %></div>
+      <div class="ui label">榜单周 <%= @cn.first.year + @cn.first.wk %></div>
       <div class='ui segment'>
         <div class="ui selection list ">
           <% @cn.each do |item| %>
@@ -185,7 +185,7 @@
       </div>
     </div>
     <div class="ui tab " data-tab="HK">
-      <div class="ui label">榜单周 <%= @hk.first.wk %></div>
+      <div class="ui label">榜单周 <%= @hk.first.year + @hk.first.wk %></div>
       <div class='ui segment'>
         <div class="ui selection list ">
           <% @hk.each do |item| %>
@@ -357,7 +357,7 @@
       </div>
     </div>
     <div class="ui tab " data-tab="JP">
-      <div class="ui label">榜单周 <%= @jp.first.wk %></div>
+      <div class="ui label">榜单周 <%= @jp.first.year + @jp.first.wk %></div>
       <div class='ui segment'>
         <div class="ui selection list ">
           <% @jp.each do |item| %>

@@ -9,10 +9,11 @@ System initialization
 ```
 bundle install
 rake db:scheme:load
+rails runner scripts/grab_boxoffice_from_m1905.rb
 rails runner scripts/grab_boxoffice_from_mtime.rb
-rails runner scripts/grab_oscar_from_mtime.rb
+rails runner scripts/grab_oscar_from_m1905.rb
 ```
-then run your server
+wait for data import is complete, then run your server
 ```
 rails s
 ```

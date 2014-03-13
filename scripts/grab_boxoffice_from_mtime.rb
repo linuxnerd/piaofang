@@ -87,7 +87,7 @@ page.css('div.ticket_list').collect do |area_item|
                           year: year,
                           area: area,
                           wk: wk,
-                          source: 'mtime'
+                          source: 'mtime',
                           wboxoffice: wboxoffice,
                           tboxoffice: tboxoffice)
       end

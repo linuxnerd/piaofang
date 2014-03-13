@@ -60,7 +60,7 @@ end # def boxoffice_list
 ###########################
 def main
   boxoffice_list.collect do |boxoffice_item|
-    sleep(1) # 避免抓取数据给网站带来的负担
+    #sleep(1) # 避免抓取数据给网站带来的负担
     html_stream = open(boxoffice_item[:url])
     page = Nokogiri::HTML(html_stream)
     

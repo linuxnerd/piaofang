@@ -1,10 +1,10 @@
 class BoxofficesController < ApplicationController
   def index
     # source: m1905
-    @us = Boxoffice.where(area: '北美票房').order('wk desc, rid asc').limit(10)
-    @hk = Boxoffice.where(area: '香港票房').order('wk desc, rid asc').limit(10)
+    @us = Boxoffice.latest_boxoffice('北美票房')
+    @hk = Boxoffice.latest_boxoffice('香港票房')
     @cn = Boxoffice.latest_boxoffice('内地票房')
-    @jp = Boxoffice.where(area: '日本票房').order('wk desc, rid asc').limit(10)
+    @jp = Boxoffice.latest_boxoffice('日本票房')
     
 
     # source: mtime

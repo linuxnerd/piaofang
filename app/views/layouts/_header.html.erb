@@ -1,12 +1,12 @@
 <nav class="ui teal menu">
   <%= link_to root_path, class:'header item', :'data-method' => :get do %>
-    <%= image_tag 'logo.gif', class: 'ui tiny floated image' %>
-    &nbsp;全球影视推荐
+    <i class='globe icon'></i>全球影视推荐
   <% end %>
   <a data-method='get' href='/' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'index' %>">
     <i class='sort attributes descending icon'></i>票房榜
   </a>
   <a data-method='get' href='<%= search_honor_index_path %>' class="item <%= 'active' if params[:controller] == 'honor' && params[:action] == 'search' %>">
     <i class='trophy icon'></i>功勋榜
+    <div class="ui floating red small label">New</div>
   </a>
 </nav>
