@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310124905) do
+ActiveRecord::Schema.define(version: 20140313014930) do
 
   create_table "boxoffices", force: true do |t|
     t.integer  "rid"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140310124905) do
     t.string   "area"
     t.string   "year"
     t.integer  "movie_id"
+    t.string   "source"
   end
 
   add_index "boxoffices", ["movie_id"], name: "index_boxoffices_on_movie_id"

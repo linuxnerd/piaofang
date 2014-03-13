@@ -8,6 +8,12 @@ page = Nokogiri::HTML(html_stream)
 
 page.css('div.ticket_list').collect do |area_item|
 
+  # 这四类票房榜取m1905
+  case area_item['name']
+  when '北美票房榜', '内地票房榜', '香港票房榜', '日本票房榜'
+    next
+  end
+
   area_item.css('ul.content li').collect do |row|
     # prepare row data
     rid = row.css('em.c_green').text # 排名
@@ -81,6 +87,7 @@ page.css('div.ticket_list').collect do |area_item|
                           year: year,
                           area: area,
                           wk: wk,
+                          source: 'mtime'
                           wboxoffice: wboxoffice,
                           tboxoffice: tboxoffice)
       end

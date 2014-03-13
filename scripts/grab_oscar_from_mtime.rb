@@ -20,6 +20,7 @@ end
 Honor.delete_all
 
 oscar_list.collect do |url|
+  sleep(1) # 避免抓取数据对网站的影响
   begin
     oscar_stream_of_year = open(url)
     oscar_page_of_year = Nokogiri::HTML(oscar_stream_of_year)

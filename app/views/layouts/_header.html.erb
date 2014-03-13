@@ -1,7 +1,7 @@
 <nav class="ui teal menu">
   <%= link_to root_path, class:'header item', :'data-method' => :get do %>
     <%= image_tag 'logo.gif', class: 'ui tiny floated image' %>
-    &nbsp;牛牛票房榜
+    &nbsp;全球影视推荐
   <% end %>
   <a data-method='get' href='/' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'index' %>">
     <i class='sort attributes descending icon'></i>票房榜

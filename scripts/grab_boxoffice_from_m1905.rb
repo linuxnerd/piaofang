@@ -14,11 +14,9 @@ def boxoffices_page
   html_stream = open(BASE_URL)
   page = Nokogiri::HTML(html_stream)
 
-  list = []
   page.css('#Menu_list_4 a').collect do |item|
-    list << { :area => item.text, :url => item['href'] }
+    { :area => item.text, :url => item['href'] }
   end
-  list
 end
 
 # 从票房榜的具体URL地址中获取年份的URL
@@ -26,22 +24,18 @@ def year_list_in(boxoffice_url)
   html_stream = open(boxoffice_url)
   page = Nokogiri::HTML(html_stream)
 
-  list = []
   page.css('div.sel_botbox').first.css('div.sel_xzline a').collect do |item|
-    list << { :year => item.text, :url => item['href'] }
+    { :year => item.text, :url => item['href'] }
   end
-  list
 end
 
 # 从年份URL中获取周URL（最终票房榜数据的URL）
 def week_list_in(year_url)
   html_stream = open(year_url)
   page = Nokogiri::HTML(html_stream)
-  list = []
   page.css('div.sel_botbox')[1].css('div.sel_xzline a').collect do |item|
-    list << { :week => item.text, :url => item['href'] }
+    { :week => item.text, :url => item['href'] }
   end
-  list
 end
 
 # 获得每周票房榜汇总数据
@@ -66,25 +60,38 @@ end # def boxoffice_list
 ###########################
 def main
   boxoffice_list.collect do |boxoffice_item|
+    sleep(1) # 避免抓取数据给网站带来的负担
     html_stream = open(boxoffice_item[:url])
     page = Nokogiri::HTML(html_stream)
-
+    
     page.css('tr.tableCONT').collect do |row|
-      rid = row.css('td.blueQsCD').text # 名词
+      rid = row.css('td.blueQsCD').text # 名次
       area = boxoffice_item[:area] # 地区
       year = boxoffice_item[:year] # 年份
       week = boxoffice_item[:week] # 周数
+      wboxoffice = row.css('.ta_c')[3].text # 周票房
+      tboxoffice = row.css('.ta_c')[4].text # 总票房
       
       begin
+        next if row.css('span.pl08 a')[0].blank? # 无影片详细页面
+
         detail_url = row.css('span.pl08 a')[0]['href'] # 明细页面链接
+
+        # 网站老的链接
+        if detail_url =~ /\.shtml\z/
+          movie_id = detail_url.split('/').last.split('.').first
+          detail_url = "http://www.m1905.com/mdb/film/#{movie_id}/"
+        end
         detail_page = Nokogiri::HTML(open(detail_url))
 
-        next if detail_page.css('div.laMovName h1 a').text.blank? # 无影片详细页面
+        next if detail_page.css('div.laMovName h1 a').text.blank? # 详细页面为404页面
 
-        name = detail_page.css('div.laMovName h1 a').text # 影片中文名
+        name = detail_page.css('div.laMovName h1 a').text# 影片中文名
         en_name = detail_page.css('div.laMovName div.fl a')[0].text.strip # 影片英文名
         director = detail_page.css('ol.movStaff li')[0].css('a').text # 导演
         rating = detail_page.css('.rating-dt span.score').text # 评分
+        wboxoffice = row.css('.ta_c')[3].text # 周票房
+        tboxoffice = row.css('.ta_c')[4].text # 总票房
 
         # 演员表
         actors = detail_page.css('ol.movStaff li')[1].css('a.laBlueS_f').collect do |actor|
@@ -106,13 +113,54 @@ def main
         # 剧情页面获取全部剧情
         scenario_page = Nokogiri::HTML(open(detail_url+'scenario/'))
         summary = scenario_page.css('.line_Slx').text.gsub(%r{\r\n}, "")
-        p summary
-        p area+year+week+name
+        
+
+        # 海报缩略图链接（海报可能没有）
+        if detail_page.css('img.imgBOR01')
+          poster_url = detail_page.css('img.imgBOR01').attr('src').text
+
+          # 没海报图片
+          url_path = ''
+          if poster_url != '/images/nopic_small_movie.jpg'
+            filename = poster_url.split('/').last
+            data = open(poster_url) { |f| f.read }
+            file_path = "public/uploads/poster/#{name}/#{filename}"
+            url_path = "/uploads/poster/#{name}/#{filename}"
+
+            #if folder not exist,then creat it.
+            Dir.mkdir("public/uploads/poster/#{name}") unless File.exist?("public/uploads/poster/#{name}")
+            open(file_path,"wb") { |f| f.write(data) } unless File.exist?(file_path)
+          end
+        end
+
+        # import into database
+        movie = Movie.where(name: name).first
+        if movie.nil?
+          movie = Movie.create!(name: name,
+                          en_name: en_name,
+                          poster_url: url_path,
+                          rating: rating,
+                          director: director,
+                          actors: actors,
+                          types: types,
+                          release_date: release_date,
+                          summary: summary)
+        end
+
+        if Boxoffice.where(wk: week, area: area, movie_id: movie.id).first.nil?
+          movie.boxoffices.create!(rid: rid,
+                            year: year,
+                            area: area,
+                            wk: week,
+                            source: 'm1905',
+                            wboxoffice: wboxoffice,
+                            tboxoffice: tboxoffice)
+        end
+        p area+year+week+'_'+name+' [ok]'
 
       rescue Exception
         p detail_url+'打开失败'
       end
-
     end
   end
 
