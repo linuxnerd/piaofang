@@ -45,13 +45,13 @@
       <% if @boxoffice_movies_list.blank? %>
         <div class='ui blue segment'>
           <%= image_tag "helpless#{rand(3)}.jpeg", class: 'ui floated image' %>
-          <p>很遗憾，还没能进入过票房榜榜单。也可能是票房榜的数据太新鲜了，还没进入数据库。</p>
-          <small>票房榜收录2010年后的数据</small>
+          <p>可能票房数据太新鲜了，还没进入数据库。</p>
+          <small>票房榜收录2010年至今的票房记录</small>
         </div>
       <% else %>
         <% @boxoffice_movies_list.collect do |movie| %>
           <div class='ui blue segment'>
-            <h4 class='ui left block header'><%= movie.name+' '+movie.en_name %></h4>
+            <h4 class='ui block header'><%= movie.name+' '+movie.en_name %></h4>
             <div class="ui divided list">
               <% movie.boxoffices.order(:rid).collect do |b| %>
                 <div class='item'>

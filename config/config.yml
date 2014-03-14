@@ -1,5 +1,22 @@
 defaults: &defaults
   movie_api_key: 8b5f6d4adb46123938ebad000ca09300
+  worth_to_watch_oscar: 60
+  worth_to_watch_boxoffice: 60
+  brilliant_oscar: 100
+  brilliant_boxoffice: 100
+
+  award_winner:
+    best_picture: 60
+    best_writing: 30
+    best_animated_feature: 60
+    best_documentary_feature: 60
+    other: 3
+  award_nominate:
+    best_picture: 40
+    best_writing: 20
+    best_animated_feature: 40
+    best_documentary_feature: 40
+    other: 2
 
 development:
   <<: *defaults
