@@ -43,7 +43,7 @@ def main
                         award_type: '获奖',
                         name: winner,
                         festival: 'oscar')
-          p year+award_name+'获奖'+winner+' [ok]'
+          p '【'+Time.current.strftime("%Y-%m-%d %H:%M:%S")+'】'+year+award_name+'获奖'+winner+' [ok]'
 
           row.css('li.right span a').collect do |nominate_item|
             Honor.create!(session: session,
@@ -52,7 +52,7 @@ def main
                         award_type: '提名',
                         name: nominate_item.text,
                         festival: 'oscar')
-            p year+award_name+'提名'+nominate_item.text+' [ok]'
+            p '【'+Time.current.strftime("%Y-%m-%d %H:%M:%S")+'】'+year+award_name+'提名'+nominate_item.text+' [ok]'
           end
         end
 

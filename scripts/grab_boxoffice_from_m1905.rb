@@ -156,7 +156,7 @@ def main
                             wboxoffice: wboxoffice,
                             tboxoffice: tboxoffice)
         end
-        p area+year+week+'_'+name+' [ok]'
+        p '【'+Time.current.strftime("%Y-%m-%d %H:%M:%S")+'】'+area+year+week+'_'+name+' [ok]'
 
       rescue Exception
         p detail_url+'打开失败'
