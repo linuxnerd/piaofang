@@ -1,4 +1,6 @@
 Piaofang::Application.routes.draw do
+  resources :sessions, only: [:new, :create, :destory]
+  resources :users, only: [:new, :create]
   resources :honor do
     collection do
       get 'search'
