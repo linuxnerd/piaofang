@@ -9,7 +9,6 @@ class Boxoffice < ActiveRecord::Base
                     area, year, "(第#{week}周)%").order("rid asc")
   end
 
-
   private
     def self.max_year_of(area)
       year_string = Boxoffice.where(area: area).maximum("year")

@@ -23,7 +23,10 @@
       <% else %>
         <% @honor_movies_list.collect do |oscar| %>
           <div class='ui teal segment'>
-            <h4 class='ui block header'><%= oscar.name %></h4>
+            <h4 class='ui block header'>
+              <%= oscar.name %>
+            </h4>
+            
             <div class="ui divided list">
               <% Honor.where(name: oscar.name).order(award_type: :desc).collect do |honor| %>
                 <div class='item'>
@@ -51,7 +54,9 @@
       <% else %>
         <% @boxoffice_movies_list.collect do |movie| %>
           <div class='ui blue segment'>
-            <h4 class='ui block header'><%= movie.name+' '+movie.en_name %></h4>
+            <h4 class='ui block header'>
+              <%= movie.name+' '+movie.en_name %>
+            </h4>
             <div class="ui divided list">
               <% movie.boxoffices.order(:rid).collect do |b| %>
                 <div class='item'>
