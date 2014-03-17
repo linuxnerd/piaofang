@@ -22,6 +22,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
@@ -47,6 +50,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
@@ -72,6 +78,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
@@ -96,6 +105,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
@@ -120,6 +132,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
@@ -145,6 +160,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
@@ -169,6 +187,9 @@
                 </div>
                 <%= item.movie.name %>
                 <%= render_rating(item.movie.rating) %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <div class='ui label'>已提供下载</div>
+                <% end %>
               </h3>
               <h3 class='ui right floated header'>
                 <%= link_to edit_movie_path(item.movie.id), class: "circular ui icon button" do %>
