@@ -1,0 +1,24 @@
+<div class='ui center aligned grid'>
+  <div class='ui three wide column'>
+    <div class="ui left aligned form segment">
+      <%= form_for(:session, url: sessions_path) do |f| %>
+      <% flash.each do |key,value| %>
+        <div class="ui <%= key %> message"><%= value %></div>
+      <% end %>
+      <div class="field">
+        <%= f.label '用户名' %>
+        <%= f.text_field :email, placeholder: '邮件地址' %>
+      </div>
+      <div class="field">
+        <%= f.label '密码' %>
+        <%= f.password_field :password, placeholder: '密码' %>
+      </div>
+      <div class="ui buttons">
+        <%= f.submit '登录', class: 'ui positive hover button' %>
+        <div class="or"></div>
+        <div class="ui hover button">清空</div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -23,6 +23,10 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+  
+  def admin_user
+    redirect_to root_path, :flash => { :error=>"您没有该操作的权限！" } unless current_user.admin?
+  end
 
   def signed_in_user
     unless signed_in?
@@ -37,7 +41,7 @@ module SessionsHelper
   end
 
   def redirect_back_or(default)
-    redirect_to(session[:return_to] || default,:flash => {:notice => "欢迎回到RA-TAB!"})
+    redirect_to(session[:return_to] || default)
     session.delete(:return_to)
   end
 

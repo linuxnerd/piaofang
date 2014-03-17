@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       @user.update_attribute(:last_ip, request.remote_ip)
-      redirect_to root_path, :flash => { :notice=>"欢迎登录，请在影片详细页面找茬" }
+      redirect_to root_path, :flash => { :success=>"欢迎登录，请在影片详细页面找茬" }
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       sign_in @user
-      redirect_to edit_user_path(@user), :flash => { :notice=>"资料修改完成" }
+      redirect_to edit_user_path(@user), :flash => { :success=>"资料修改完成" }
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_password(user_params)
       #sign_in @user
-      redirect_to root_path, :flash => { :notice=>"密码修改成功" }
+      redirect_to root_path, :flash => { :success=>"密码修改成功" }
     else
       render 'password'
     end

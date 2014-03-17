@@ -14,7 +14,7 @@
     <div class="ui active tab " data-tab="US">
       <div class="ui label">榜单周 <%= @us.first.year + @us.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @us.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -28,6 +28,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -47,12 +50,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
-                  <%= item.movie.name %>
+                <%= item.movie.name %>
+                <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">
@@ -96,7 +106,7 @@
     <div class="ui tab " data-tab="CN">
       <div class="ui label">榜单周 <%= @cn.first.year + @cn.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @cn.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -110,6 +120,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -129,12 +142,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
                   <%= item.movie.name %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">
@@ -177,7 +197,7 @@
     <div class="ui tab " data-tab="HK">
       <div class="ui label">榜单周 <%= @hk.first.year + @hk.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @hk.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -191,6 +211,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -210,12 +233,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
                   <%= item.movie.name %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">
@@ -258,7 +288,7 @@
     <div class="ui tab " data-tab="TW">
       <div class="ui label">榜单周 <%= @tw.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @tw.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -272,6 +302,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -291,12 +324,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
                   <%= item.movie.name %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">
@@ -339,7 +379,7 @@
     <div class="ui tab " data-tab="JP">
       <div class="ui label">榜单周 <%= @jp.first.year + @jp.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @jp.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -353,6 +393,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -372,12 +415,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
                   <%= item.movie.name %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">
@@ -420,7 +470,7 @@
     <div class="ui tab " data-tab="KR">
       <div class="ui label">榜单周 <%= @kr.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @kr.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -434,6 +484,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -453,12 +506,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
                   <%= item.movie.name %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">
@@ -501,7 +561,7 @@
     <div class="ui tab " data-tab="FR">
       <div class="ui label">榜单周 <%= @fr.first.wk %></div>
       <div class='ui segment'>
-        <div class="ui selection list ">
+        <div class="ui selection divided list ">
           <% @fr.each do |item| %>
             <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
               第<%= item.rid %>名
@@ -515,6 +575,9 @@
                     <%= render_rating(item.movie.rating) %>
                   </h3>
                   <%= item.movie.types %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                    <div class='ui label'>提供下载</div>
+                  <% end %>
                 </div>
                 <div class='ui six wide column'>
                   <table class='ui table segment'>
@@ -534,12 +597,19 @@
                 </div>
               </div>
             </div>
-            <div class="ui divider"></div>
             
             <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
               <i class="close icon"></i>
               <div class="header">
                   <%= item.movie.name %>
+                  <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+                  <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+                    <div class="visible content"><%= item.movie.torrent_type %></div>
+                    <div class="hidden content">
+                        下载
+                    </div>
+                  </a>
+                <% end %>
               </div>
               <div class="content">
                 <div class="ui divided selection list">

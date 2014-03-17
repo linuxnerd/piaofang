@@ -9,4 +9,22 @@
     <i class='trophy icon'></i>功勋榜
     <div class="ui floating red small label">New</div>
   </a>
+
+  <% if signed_in? %>
+    <div class='right menu'>
+      <div class="ui dropdown item">
+        账户 <i class="dropdown icon"></i>
+        <div class="menu">
+          <%= link_to movies_path, class: 'item' do %>
+            <i class='reorder icon'></i>
+            票房列表
+          <% end %>
+          <%= link_to signout_path, method: "delete", class: 'item' do %>
+            <i class='sign out icon'></i>
+            退出
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </nav>

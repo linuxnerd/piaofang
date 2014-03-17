@@ -15,12 +15,16 @@
 <body>
 <div class="ui page ">
   <%= render 'layouts/header' %>
+  <% flash.each do |key,value| %>
+    <div class="ui <%= key %> message"><%= value %></div>
+  <% end %>
   <%= yield %>
 </div>
 <div style="display:none;">
   <script type="text/javascript">
   var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
   document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2a6e8bb50262971aacfa8fee4d89dc34' type='text/javascript'%3E%3C/script%3E"));
+  $('.ui.dropdown').dropdown();
   </script>
 </div>
 </body>

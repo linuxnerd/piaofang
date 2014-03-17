@@ -1,0 +1,10 @@
+<% if object.errors.any? %>
+  <div class="ui error message">
+    <div class="header">您的提交出现了错误</div>
+    <ul class="list">
+      <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

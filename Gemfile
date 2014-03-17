@@ -3,14 +3,14 @@ source 'http://ruby.taobao.org'
 gem 'rails', '~> 4.0.1'
 
 #加密
-#gem 'bcrypt-ruby', '3.1.2'
+gem 'bcrypt-ruby', '3.1.2'
 
 #分页
 #gem 'will_paginate', '3.0.4'
 #gem 'bootstrap-will_paginate', '0.0.9'
 
 #form
-#gem 'simple_form' ,'3.0.1'
+gem 'simple_form' ,'3.0.1'
 #gem 'country_select', '1.3.1'
 
 #导出xls
@@ -24,7 +24,7 @@ gem 'rails', '~> 4.0.1'
 #gem 'jquery-ui-rails'
 #gem 'jquery-modal-rails'
 #gem 'bootstrap-sass','2.3.2.0'
-#gem 'bootstrap_helper', github: 'sunday35034/bootstrap-helper'
+gem 'bootstrap_helper', '4.2.3'
 #gem 'font-awesome-sass'
 
 # 定时任务

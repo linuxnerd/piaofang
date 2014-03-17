@@ -1,11 +1,13 @@
 Piaofang::Application.routes.draw do
-  resources :sessions, only: [:new, :create, :destory]
-  resources :users, only: [:new, :create]
+  resources :movies, only: [:index, :edit, :update]
+  resources :sessions, only: [:new, :create, :destroy]
   resources :honor do
     collection do
       get 'search'
     end
   end
+  match '/admin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
   root to: 'boxoffices#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
