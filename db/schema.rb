@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317112830) do
+ActiveRecord::Schema.define(version: 20140318020221) do
 
   create_table "boxoffices", force: true do |t|
     t.integer  "rid"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140317112830) do
     t.string   "en_name"
     t.string   "torrent_url"
     t.string   "torrent_type"
+    t.boolean  "has_subtitle", default: false
   end
 
   add_index "movies", ["name"], name: "index_movies_on_name", unique: true

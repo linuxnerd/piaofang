@@ -30,34 +30,32 @@ page.css('div.ticket_list').collect do |area_item|
       detail_page = Nokogiri::HTML(detail_stream)
 
       # movie rating
-      rating = detail_page.css("span[property='v:average']").text
+      # rating = detail_page.css("span[property='v:average']").text
 
       # director
       director = detail_page.css("a[rel='v:directedBy']").text
 
       # actors & actress list
-      actors = detail_page.css("li a[rel='v:starring']").collect do |actor|
-        actor.text
+      actors = detail_page.css("dl.main_actor").collect do |actor|
+        actor.css("a[rel='v:starring']").first.text
       end.join(', ')
 
       # movie type
-      types = detail_page.css("li a[property='v:genre']").collect do |type|
-        type.text.strip
-      end.join('/')
+      types = detail_page.css("div.otherbox").text.split(' - ').second
 
       # release date
-      release_date = detail_page.css("li span[property='v:initialReleaseDate']").text.strip
+      release_date = detail_page.css("a[property='v:initialReleaseDate']").text.strip
 
       # summary
-      summary = detail_page.css("span[property='v:summary']").text.strip
+      summary = detail_page.css("p.lh18").text.strip
 
       # movie_name
-      name = detail_page.css("span[property='v:itemreviewed']").text.strip
-      en_name = detail_page.css("h1.movie_film_nav span.ml9").text.strip
+      name = detail_page.css("h1[property='v:itemreviewed']").text.strip
+      en_name = detail_page.css("p.db_enname").text.strip
 
       # 海报缩略图链接（海报可能没有）
-      unless detail_page.css('img.movie_film_img').blank?
-        poster_url = detail_page.css('img.movie_film_img').attr('src').text 
+      unless detail_page.css("img[rel='v:image']").blank?
+        poster_url = detail_page.css("img[rel='v:image']").attr('src').text
         filename = poster_url.split('/').last
         data = open(poster_url) { |f| f.read }
         file_path = "public/uploads/poster/#{name}/#{filename}"
@@ -94,8 +92,8 @@ page.css('div.ticket_list').collect do |area_item|
 
       p '【'+Time.current.strftime("%Y-%m-%d %H:%M:%S")+'】'+area+'_'+name+' [ok]'
 
-    rescue Exception
-      p area+'_'+name+'('+detail_url+')打开失败'
+    #rescue Exception
+      #p area+'_'+name+'('+detail_url+')打开失败'
     end
 
   end
