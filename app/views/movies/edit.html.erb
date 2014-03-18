@@ -3,7 +3,7 @@
     <div class="ui left aligned form segment">
       <%= simple_form_for(@movie) do |f| %>
         <div class="field">
-          <%= f.input :torrent_type, label: '片源类型', collection: %w[HR-HDTV 720p 1080p BRRip BluRay CAM版] %>
+          <%= f.input :torrent_type, label: '片源类型', collection: %w[HR-HDTV 720p 1080p BRRip BluRay CAM HDCAM] %>
         </div>
         <div class="field">
           <div class="ui slider checkbox">
