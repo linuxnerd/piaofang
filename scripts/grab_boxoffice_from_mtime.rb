@@ -72,7 +72,7 @@ page.css('div.ticket_list').collect do |area_item|
         movie = Movie.create!(name: name,
                         en_name: en_name,
                         poster_url: url_path,
-                        rating: rating,
+                        #rating: rating,
                         director: director,
                         actors: actors,
                         types: types,
