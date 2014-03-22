@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
 
   private
     def movie_params
-      params.require(:movie).permit(:torrent_url, :torrent_type)
+      params.require(:movie).permit(:torrent_url, :torrent_type, :has_subtitle)
     end
 
 end
