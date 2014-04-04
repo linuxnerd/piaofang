@@ -21,7 +21,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
@@ -52,7 +52,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
@@ -83,7 +83,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
@@ -113,7 +113,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
@@ -143,7 +143,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
@@ -174,7 +174,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
@@ -204,7 +204,7 @@
                   第<%= item.rid %>名
                 </div>
                 <%= item.movie.name %>
-                <%= render_rating(item.movie.rating) %>
+                <%= render_rating(item.movie.rating) if item.movie.rating %>
                 <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
                   <div class='ui label'>已提供下载</div>
                   <% unless item.movie.has_subtitle? %>
