@@ -38,6 +38,11 @@ gem 'settingslogic', '2.0.9'
 
 gem 'sqlite3', '1.3.7'
 
+# spinejs
+gem 'json2-rails', '1.0.0'
+gem 'eco', '1.0.0'
+gem 'spine-rails', '0.1.2'
+
 group :test do
   gem 'selenium-webdriver', '2.0.0'
   gem 'capybara', '2.1.0'
