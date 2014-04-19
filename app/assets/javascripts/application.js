@@ -15,6 +15,5 @@
 //= require turbolinks
 //= require semantic.js
 //= require jquery.address.js
-//= require app
 //= require_tree .
 

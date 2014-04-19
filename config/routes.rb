@@ -1,4 +1,5 @@
 Piaofang::Application.routes.draw do
+  get "demo/index"
   resources :movies, only: [:index, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :honor do
