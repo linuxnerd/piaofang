@@ -1,5 +1,5 @@
 <nav class="ui teal pointing menu">
-  <%= link_to root_path, class:'header item', :'data-method' => :get do %>
+  <%= link_to root_path, class:'header item', method: :get do %>
     <i class='globe icon'></i>全球影视推荐
   <% end %>
   <a data-method='get' href='/' class="item <%= 'active' if params[:controller] == 'boxoffices' && params[:action] == 'index' %>">
