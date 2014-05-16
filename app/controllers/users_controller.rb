@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     flash[:success] = "#{@user.name} 被成功删除!"
     redirect_to users_url
   end
-  
+
   def password
     @user = User.find(params[:id])
   end
