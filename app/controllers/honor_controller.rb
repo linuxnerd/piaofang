@@ -1,6 +1,6 @@
 class HonorController < ApplicationController
   def search
-    unless params['movie_name'].blank?
+    if not params['movie_name'].blank?
       @boxoffice_movies_list = Movie.where("name like ? or en_name like ?",
           "%#{params['movie_name']}%", "%#{params['movie_name']}%")
 
