@@ -1,4 +1,12 @@
 class BoxofficeCell < Cell::Rails
+  cache :m1905_boxoffice, expires_in: 1.day do |options|
+    options[:area]
+  end
+
+  cache :mtime_boxoffice, expires_in: 3.days do |options|
+    options[:area]
+  end
+
   helper BoxofficesHelper
 
   def m1905_boxoffice(args)
