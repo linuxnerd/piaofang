@@ -1,6 +1,6 @@
 class BoxofficeCell < Cell::Rails
   cache :m1905_boxoffice, expires_in: 3.days
-  cache :m1905_boxoffice, expires_in: 5.days
+  cache :mtime_boxoffice, expires_in: 5.days
 
   helper BoxofficesHelper
 
