@@ -1,0 +1,92 @@
+<div class="ui label">榜单周 <%= @mtime_latest_boxoffice.first.year + @mtime_latest_boxoffice.first.wk %></div>
+<div class='ui segment'>
+  <div class="ui selection divided list ">
+    <% @mtime_latest_boxoffice.each do |item| %>
+      <div class="ui <%= item.rid<=3 ? 'red' : 'teal' %> ribbon label">
+        第<%= item.rid %>名
+      </div>
+      <div id='<%= item.area %><%=item.rid %>' class="item" >
+        <img alt="<%= item.movie.name %>" src="<%= item.movie.poster_url %>", class = 'ui circular small image' />
+        <div class='ui grid'>
+          <div class='ui six wide column'>
+            <h3 class="ui header">
+              <%= item.movie.name %>
+              <%= render_rating(item.movie.rating) if item.movie.rating %>
+            </h3>
+            <%= item.movie.types %>
+            <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+              <div class='ui label'>提供下载</div>
+              <% unless item.movie.has_subtitle? %>
+                <div class='ui label'>无字幕</div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class='ui six wide column'>
+            <table class='ui table segment'>
+              <thead>
+                <tr>
+                  <th>周票房</th>
+                  <th>总票房</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= item.wboxoffice %></td>
+                  <td><%= item.tboxoffice %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id='<%= item.area %><%=item.rid %>_modal' class="ui large modal">
+        <i class="close icon"></i>
+        <div class="header">
+          <%= item.movie.name %>
+          <% unless item.movie.torrent_type.blank? || item.movie.torrent_url.blank? %>
+            <a href="<%= item.movie.torrent_url %>" class="ui circular animated fade button" target='_blank'>
+              <div class="visible content"><%= item.movie.torrent_type %></div>
+              <div class="hidden content">
+                  下载
+              </div>
+            </a>
+          <% end %>
+        </div>
+        <div class="content">
+          <div class="ui divided selection list">
+            <a class="item">
+                <div class="ui teal horizontal label">上映日期</div>
+                <%= item.movie.release_date %>
+            </a>
+            <a class="item">
+                <div class="ui teal horizontal label">导演</div>
+                <%= item.movie.director %>
+            </a>
+            <a class="item">
+                <div class="ui teal horizontal label">主演</div>
+                <%= item.movie.actors %>
+            </a>
+            <a class="item">
+                <div class="ui teal horizontal label">类型</div>
+                <%= item.movie.types %>
+            </a>
+            <a class="item">
+                <div class="ui teal horizontal label">简介</div>
+                <p><%= item.movie.summary %><p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        $('#<%= item.area %><%=item.rid %>').popup({
+          position : 'left center',
+          title    : '<%= item.movie.release_date %>上映',
+          content  : '主演：<%= item.movie.actors %>'
+        });
+        $('#<%= item.area %><%=item.rid %>_modal').modal('attach events', '#<%= item.area %><%=item.rid %>', 'show');
+      </script>
+    <% end %>
+  </div>
+</div>
