@@ -1,9 +1,9 @@
 class BoxofficeCell < Cell::Rails
-  cache :m1905_boxoffice, expires_in: 3.hours do |options|
+  cache :m1905_boxoffice, expires_in: 30.minutes do |options|
     options[:area]
   end
 
-  cache :mtime_boxoffice, expires_in: 5.hours do |options|
+  cache :mtime_boxoffice, expires_in: 30.minutes do |options|
     options[:area]
   end
 

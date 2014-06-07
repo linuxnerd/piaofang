@@ -54,16 +54,19 @@ def boxoffice_list
 end # def boxoffice_list
 
 
-
 ###########################
 # 程序入口
 ###########################
 def main
   boxoffice_list.collect do |boxoffice_item|
-    #sleep(1) # 避免抓取数据给网站带来的负担
-    html_stream = open(boxoffice_item[:url])
-    page = Nokogiri::HTML(html_stream)
-    
+    begin
+      html_stream = open(boxoffice_item[:url])
+      page = Nokogiri::HTML(html_stream)
+    rescue
+      p boxoffice_item[:url]+'打开失败'
+      next
+    end
+
     page.css('tr.tableCONT').collect do |row|
       rid = row.css('td.blueQsCD').text # 名次
       area = boxoffice_item[:area] # 地区
@@ -71,22 +74,28 @@ def main
       week = boxoffice_item[:week] # 周数
       wboxoffice = row.css('.ta_c')[3].text # 周票房
       tboxoffice = row.css('.ta_c')[4].text # 总票房
-      
+
+      # 如果票房纪录已存在，跳过下面的处理
+      next if Boxoffice.where(wk: week, area: area, year: year, rid: rid).first ||
+        row.css('span.pl08 a')[0].blank? # 无影片详细页面
+
+      next if row.css('span.pl08 a')[0].blank? # 无影片详细页面
+
+      detail_url = row.css('span.pl08 a')[0]['href'] # 明细页面链接
+
+      # 网站老的链接
+      if detail_url =~ /\.shtml\z/
+        movie_id = detail_url.split('/').last.split('.').first
+        detail_url = "http://www.m1905.com/mdb/film/#{movie_id}/"
+      end
+
       begin
-        next if row.css('span.pl08 a')[0].blank? # 无影片详细页面
-
-        detail_url = row.css('span.pl08 a')[0]['href'] # 明细页面链接
-
-        # 网站老的链接
-        if detail_url =~ /\.shtml\z/
-          movie_id = detail_url.split('/').last.split('.').first
-          detail_url = "http://www.m1905.com/mdb/film/#{movie_id}/"
-        end
         detail_page = Nokogiri::HTML(open(detail_url))
 
         next if detail_page.css('div.laMovName h1 a').text.blank? # 详细页面为404页面
 
         name = detail_page.css('div.laMovName h1 a').text# 影片中文名
+
         en_name = detail_page.css('div.laMovName div.fl a')[0].text.strip # 影片英文名
         director = detail_page.css('ol.movStaff li')[0].css('a').text # 导演
         rating = detail_page.css('.rating-dt span.score').text # 评分
@@ -97,7 +106,7 @@ def main
         actors = detail_page.css('ol.movStaff li')[1].css('a.laBlueS_f').collect do |actor|
           actor.text.strip
         end.join(', ')
-        
+
         # 影片类型
         types = detail_page.css('ol.movStaff li')[2].css('a').collect do |type|
           type.text.strip
@@ -113,7 +122,7 @@ def main
         # 剧情页面获取全部剧情
         scenario_page = Nokogiri::HTML(open(detail_url+'scenario/'))
         summary = scenario_page.css('.line_Slx').text.gsub(%r{\r\n}, "")
-        
+
 
         # 海报缩略图链接（海报可能没有）
         if detail_page.css('img.imgBOR01')
@@ -135,7 +144,7 @@ def main
 
         # import into database
         movie = Movie.where(name: name).first
-        if movie.nil?
+        unless movie
           movie = Movie.create!(name: name,
                           en_name: en_name,
                           poster_url: url_path,
@@ -147,7 +156,7 @@ def main
                           summary: summary)
         end
 
-        if Boxoffice.where(wk: week, area: area, movie_id: movie.id).first.nil?
+        unless Boxoffice.where(wk: week, area: area, movie_id: movie.id).first
           movie.boxoffices.create!(rid: rid,
                             year: year,
                             area: area,
