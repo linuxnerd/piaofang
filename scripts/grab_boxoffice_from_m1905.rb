@@ -79,8 +79,6 @@ def main
       next if Boxoffice.where(wk: week, area: area, year: year, rid: rid).first ||
         row.css('span.pl08 a')[0].blank? # 无影片详细页面
 
-      next if row.css('span.pl08 a')[0].blank? # 无影片详细页面
-
       detail_url = row.css('span.pl08 a')[0]['href'] # 明细页面链接
 
       # 网站老的链接
