@@ -14,7 +14,6 @@ AREA_LIST.each do |area_list_item|
 
   if hash['resultcode'] == '200'
     hash['result'].each do |r|
-      p r
       Boxoffice.create!(area: area_list_item,
                         rid: r['rid'],
                         name: r['name'],
