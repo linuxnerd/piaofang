@@ -10,12 +10,12 @@ class BoxofficeCell < Cell::Rails
   helper BoxofficesHelper
 
   def m1905_boxoffice(args)
-    @m1905_latest_boxoffice = Boxoffice.latest_boxoffice(args[:area])
+    @m1905_latest_boxoffice = Boxoffice.latest_m1905_boxoffice_of(args[:area])
     render
   end
 
   def mtime_boxoffice(args)
-    @mtime_latest_boxoffice = Boxoffice.where(area: args[:area]).order('wk desc, rid asc').limit(10)
+    @mtime_latest_boxoffice = Boxoffice.latest_mtime_boxoffice_of(args[:area])
     render
   end
 

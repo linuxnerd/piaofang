@@ -17,13 +17,16 @@ gem 'nokogiri', '1.6.1'
 # 配置
 gem 'settingslogic', '2.0.9'
 
-gem 'sqlite3', '1.3.7'
-
 # api
 gem 'grape', '0.7.0'
 
 # View Components for Rails
 gem 'cells', '3.11.0'
+
+group :development do
+  gem 'sqlite3', '1.3.7'
+  gem 'better_errors'
+end
 
 group :test do
   gem 'selenium-webdriver', '2.0.0'

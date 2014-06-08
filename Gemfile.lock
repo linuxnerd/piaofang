@@ -31,6 +31,9 @@ GEM
       descendants_tracker (~> 0.0.1)
       ice_nine (~> 0.9)
     bcrypt-ruby (3.1.2)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -45,6 +48,7 @@ GEM
     childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
+    coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.0.0)
@@ -173,6 +177,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
+  better_errors
   capybara (= 2.1.0)
   cells (= 3.11.0)
   coffee-rails (= 4.0.0)
