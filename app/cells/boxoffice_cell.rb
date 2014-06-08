@@ -17,7 +17,7 @@ class BoxofficeCell < Cell::Rails
 
   def mtime_boxoffice(args)
     @area = args[:area]
-    @mtime_latest_boxoffice = Boxoffice.where(area: @area).order('wk desc, rid asc').limit(10)
+    @mtime_latest_boxoffice = Boxoffice.where(area: @area).order('created_at desc, rid asc').limit(10)
     render
   end
 
