@@ -28,9 +28,9 @@ class Boxoffice::API < Grape::API
              end
       logger.info area
       if %w[北美票房 香港票房 内地票房 日本票房].include?(area)
-        boxoffices = Boxoffice.latest_boxoffice(area)
+        boxoffices = Boxoffice.latest_m1905_boxoffice_of(area)
       else
-        boxoffices = Boxoffice.where(area: area, source: 'mtime').order('wk desc, rid asc').limit(10)
+        boxoffices = Boxoffice.latest_mtime_boxoffice_of(area)
       end
       [].tap do |results|
         boxoffices.each do |item|
