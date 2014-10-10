@@ -1,7 +1,7 @@
 require "open-uri"
 require "nokogiri"
 
-BASE_URL = 'http://www.m1905.com/rank/top'
+BASE_URL = 'http://www.1905.com/rank/top'
 
 
 

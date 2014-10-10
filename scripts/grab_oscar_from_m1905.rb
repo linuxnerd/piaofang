@@ -1,7 +1,7 @@
 require "open-uri"
 require "nokogiri"
 
-BASE_URL ='http://www.m1905.com/mdb/film/festival/page/?festivalid=3'
+BASE_URL ='http://www.1905.com/mdb/film/festival/page/?festivalid=3'
 
 def oscar_list
   html_stream = open(BASE_URL)
@@ -20,13 +20,13 @@ def main
 
       year = oscar_item[:year] # 年份
       session = page.css('.mdb-awards-intro p.t-CH').text
-      
+
       page.css('.con-bd').collect do |row|
         award_name = row.css('li.left a').text
 
         # 影片奖项才做处理
         case award_name
-        when 
+        when
           # 首选奖项
           '最佳改编剧本', '最佳影片', '最佳原创剧本',
           '最佳动画长片', '最佳外语片', '最佳纪录长片',
@@ -34,7 +34,7 @@ def main
           '最佳音响效果', '最佳音效剪辑', '最佳视觉效果',
           '最佳原创歌曲', '最佳摄影', '最佳原创音乐',
           '最佳服装设计', '最佳电影剪辑', '最佳化妆与发行'
-          
+
 
           winner = row.css('li.center p.info-t a').text
           Honor.create!(session: session,
