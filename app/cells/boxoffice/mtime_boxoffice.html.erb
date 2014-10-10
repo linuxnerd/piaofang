@@ -1,4 +1,4 @@
-<div class="ui label">榜单周 <%= @mtime_latest_boxoffice.take.wk %></div>
+<div class="ui label">榜单周 <%= @mtime_latest_boxoffice.take.wk if @mtime_latest_boxoffice %></div>
 <div class='ui segment'>
   <div class="ui selection divided list ">
     <% @mtime_latest_boxoffice.each do |item| %>
