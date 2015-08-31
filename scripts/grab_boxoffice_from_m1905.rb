@@ -93,7 +93,6 @@ def main
         next if detail_page.css('div.laMovName h1 a').text.blank? # 详细页面为404页面
 
         name = detail_page.css('div.laMovName h1 a').text# 影片中文名
-
         en_name = detail_page.css('div.laMovName div.fl a')[0].text.strip # 影片英文名
         director = detail_page.css('ol.movStaff li')[0].css('a').text # 导演
         rating = detail_page.css('.rating-dt span.score').text # 评分
@@ -116,16 +115,15 @@ def main
           r_date = detail_page.css('ol.movStaff li')[4].css('a')[1].text.strip
           release_date = r_year + '年' + r_date
         end
-
+        
         # 剧情页面获取全部剧情
         scenario_page = Nokogiri::HTML(open(detail_url+'scenario/'))
         summary = scenario_page.css('.line_Slx').text.gsub(%r{\r\n}, "")
-
-
+        
         # 海报缩略图链接（海报可能没有）
-        if detail_page.css('img.imgBOR01')
-          poster_url = detail_page.css('img.imgBOR01').attr('src').text
-
+        if detail_page.css('dl.imgBAyy img')
+          poster_url = detail_page.css('dl.imgBAyy img').attr('src').text
+          
           # 没海报图片
           url_path = ''
           if poster_url != '/images/nopic_small_movie.jpg'
@@ -133,13 +131,13 @@ def main
             data = open(poster_url) { |f| f.read }
             file_path = "public/uploads/poster/#{name}/#{filename}"
             url_path = "/uploads/poster/#{name}/#{filename}"
-
+            
             #if folder not exist,then creat it.
             Dir.mkdir("public/uploads/poster/#{name}") unless File.exist?("public/uploads/poster/#{name}")
             open(file_path,"wb") { |f| f.write(data) } unless File.exist?(file_path)
           end
         end
-
+        
         # import into database
         movie = Movie.where(name: name).first
         unless movie
@@ -153,7 +151,7 @@ def main
                           release_date: release_date,
                           summary: summary)
         end
-
+        
         unless Boxoffice.where(wk: week, area: area, movie_id: movie.id).first
           movie.boxoffices.create!(rid: rid,
                             year: year,

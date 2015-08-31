@@ -6,7 +6,8 @@ BASE_URL ='http://www.1905.com/mdb/film/festival/page/?festivalid=3'
 def oscar_list
   html_stream = open(BASE_URL)
   page = Nokogiri::HTML(html_stream)
-
+  
+  # 获取
   page.css('.item dd')[1].css('a').collect do |item|
     { :year => item.text, :url => item['href'] }
   end
@@ -14,13 +15,14 @@ end
 
 def main
   Honor.delete_all
+
   oscar_list.collect do |oscar_item|
     begin
-      page = Nokogiri::HTML(open(oscar_item[:url]))
-
+      page = Nokogiri::HTML(open("http://www.1905.com"+oscar_item[:url]))
+      
       year = oscar_item[:year] # 年份
       session = page.css('.mdb-awards-intro p.t-CH').text
-
+      
       page.css('.con-bd').collect do |row|
         award_name = row.css('li.left a').text
 
