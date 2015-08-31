@@ -112,8 +112,13 @@ def main
         # 上映日期
         if detail_page.css('ol.movStaff li')[4]
           r_year = detail_page.css('ol.movStaff li')[4].css('a')[0].text
-          r_date = detail_page.css('ol.movStaff li')[4].css('a')[1].text.strip
-          release_date = r_year + '年' + r_date
+          if detail_page.css('ol.movStaff li')[4].css('a')[1]
+            r_date = detail_page.css('ol.movStaff li')[4].css('a')[1].text.strip 
+            release_date = r_year + '年' + r_date
+          else
+            release_date = r_year + '年'
+          end
+
         end
         
         # 剧情页面获取全部剧情
@@ -163,8 +168,9 @@ def main
         end
         p '【'+Time.current.strftime("%Y-%m-%d %H:%M:%S")+'】'+area+year+week+'_'+name+' [ok]'
 
-      rescue Exception
+      rescue Exception => e
         p detail_url+'打开失败'
+        p e.message
       end
     end
   end

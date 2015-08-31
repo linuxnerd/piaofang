@@ -60,7 +60,7 @@ def main
 
       end
     rescue Exception
-      p oscar_item[:url]+'打开失败'
+      p "http://www.1905.com" + oscar_item[:url]+'打开失败'
     end
   end
 end
