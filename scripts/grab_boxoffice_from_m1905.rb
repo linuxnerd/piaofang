@@ -110,15 +110,26 @@ def main
         end.join('/')
 
         # 上映日期
-        if detail_page.css('ol.movStaff li')[4]
-          r_year = detail_page.css('ol.movStaff li')[4].css('a')[0].text
-          if detail_page.css('ol.movStaff li')[4].css('a')[1]
-            r_date = detail_page.css('ol.movStaff li')[4].css('a')[1].text.strip 
+        release_date_item = case detail_page.css('ol.movStaff li').length
+        when 5 then detail_page.css('ol.movStaff li')[3] # 动画片缺少主演列表
+        when 6 then detail_page.css('ol.movStaff li')[4] # 正常影片
+        when 7 then detail_page.css('ol.movStaff li')[5] # 有获奖记录
+        end
+
+
+        if release_date_item
+          r_year = release_date_item.css('a')[0].text
+          if release_date_item.css('a')[1]
+            r_date = release_date_item.css('a')[1].text.strip 
             release_date = r_year + '年' + r_date
           else
             release_date = r_year + '年'
           end
-
+          
+          # 上映日期出现过异常，留下异常日志
+          if not release_date.include? '1', '2'
+            p "链接 #{detail_url} 中的上映日期 #{release_date} 可能不正确"
+          end
         end
         
         # 剧情页面获取全部剧情
@@ -169,8 +180,7 @@ def main
         p '【'+Time.current.strftime("%Y-%m-%d %H:%M:%S")+'】'+area+year+week+'_'+name+' [ok]'
 
       rescue Exception => e
-        p detail_url+'打开失败'
-        p e.message
+        p detail_url+'打开失败。失败原因：'+ e.message
       end
     end
   end
